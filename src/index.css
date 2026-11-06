@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Palette built around the headshot: deep navy suit, light/sky-blue tie,
+   near-black backdrop. Light mode uses darker sky for AA contrast.        */
+:root {
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --surface-2: #eef3fa;
+  --line: rgb(11 27 51 / 0.1);
+  --ink: #0b1b33;
+  --muted: #4a5a72;
+  --navy: #13294b;
+  --accent: #0369a1;
+  --accent-soft: rgb(3 105 161 / 0.08);
+  --on-accent: #ffffff;
+  --glow: rgb(56 189 248 / 0.22);
+  --blob-a: rgb(30 58 110 / 0.18);
+  --blob-b: rgb(56 189 248 / 0.18);
+}
+
+.dark {
+  --bg: #05070d;
+  --surface: #0a111f;
+  --surface-2: #0f1a2e;
+  --line: rgb(148 163 184 / 0.13);
+  --ink: #e8eef8;
+  --muted: #94a3b8;
+  --navy: #1e3a6e;
+  --accent: #7dd3fc;
+  --accent-soft: rgb(125 211 252 / 0.1);
+  --on-accent: #05070d;
+  --glow: rgb(125 211 252 / 0.28);
+  --blob-a: rgb(30 58 110 / 0.55);
+  --blob-b: rgb(56 189 248 / 0.16);
+}
+
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-navy: var(--navy);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-glow: var(--glow);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface/70 backdrop-blur-sm;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-accent text-on-accent shadow-[0_8px_30px_-8px_var(--glow)] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-8px_var(--glow)];
+  }
+  .btn-ghost {
+    @apply border border-line bg-surface/60 text-ink hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-surface-2/70 px-3 py-1 text-xs font-medium text-muted;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.2em] text-accent uppercase;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-surface-2/60 px-4 py-3 text-sm text-ink placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus-visible:outline-none focus:ring-2 focus:ring-accent/25;
+  }
+}
+
+/* ── Animated background blobs (CSS only, GPU-friendly) ─────────────────── */
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8vw, 6vh, 0) scale(1.12); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-10vw, -4vh, 0) scale(0.92); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  50% { transform: translate3d(4vw, -8vh, 0) scale(1.1); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.animate-drift-a { animation: drift-a 22s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 28s ease-in-out infinite; }
+.animate-drift-c { animation: drift-c 34s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 14s linear infinite; }
+.animate-blink { animation: blink 1s step-end infinite; }
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}

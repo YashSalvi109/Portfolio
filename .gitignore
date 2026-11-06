@@ -1,0 +1,21 @@
+# Source material: never commit (contains personal contact details)
+Profile.pdf
+Yash Salvi_CV.pdf
+
+# Dependencies & build output
+node_modules
+dist
+dist-ssr
+*.local
+
+# Env
+.env
+.env*.local
+.vercel
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log
