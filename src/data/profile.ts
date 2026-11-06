@@ -76,9 +76,9 @@ export const profile = {
 // ── About ────────────────────────────────────────────────────────────────────
 export const about = {
   paragraphs: [
-    'I’m a market research and consumer insights professional with 1+ years of experience translating consumer behaviour, brand perceptions and market data into brand management, product, positioning and growth recommendations across international markets.',
-    'I combine quantitative and qualitative evidence, from MaxDiff and perceptual mapping to expert interviews and usability observation, to identify consumer needs, evaluate commercial opportunities and influence brand decisions for global consumer businesses across FMCG, healthcare and retail.',
-    'I bring analytical thinking, creative curiosity and an owner mindset, and I’m most at home in roles spanning market research, consumer insights and strategy, where rigorous research becomes commercially relevant action.',
+    'Consumer insights and market research professional with 1+ years of experience analysing consumer behaviour, brand perceptions and market dynamics to deliver evidence-based recommendations across international markets.',
+    'Experienced in applying quantitative and qualitative research to identify consumer needs, understand purchase drivers, assess competitive landscapes and uncover opportunities for brand positioning, product development and business growth. Exposure to research projects across FMCG, healthcare and retail, translating complex findings into clear, commercially relevant insights to support strategic decision-making.',
+    'Combines analytical rigour, commercial awareness and creative problem-solving with a proactive, ownership-driven approach to understanding consumers and addressing business challenges.',
   ],
   /** Headline numbers shown as animated stats. All taken from the CV. */
   stats: [
@@ -130,7 +130,18 @@ export const experience: Experience[] = [
       'Synthesised consumer evidence into commercial implications and recommendations across 12+ client-facing presentations, communicating consumer needs, trial & consumer activation opportunities and implications for brand and product decisions to stakeholders.',
       'Streamlined insight synthesis and reporting by testing Microsoft Copilot and automated reporting tools with analyst quality checks, reducing turnaround time by 15% and freeing 3–5 hours per report for deeper insight development.',
     ],
-    tags: ['MaxDiff', 'Perceptual Mapping', 'Multi-market', 'Client Delivery', 'Microsoft Copilot'],
+    tags: [
+      'Perceptual Mapping',
+      'Multi-market',
+      'Client Delivery',
+      'Microsoft Copilot',
+      'Market Research',
+      'Survey Scripting',
+      'Multi-Market Study',
+      'Quantitative Research',
+      'Consumer Insights',
+      'Brand Management',
+    ],
   },
   {
     company: 'Black Sheep Coffee',
